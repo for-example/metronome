@@ -1,0 +1,36 @@
+body {
+  font : 14px Tahoma, Verdana, Helvetica, Arial, sans-serif;
+}
+
+#dashboard   {
+  width      : 650px;
+  margin     : auto;
+  margin-top : 30px;
+}
+
+#dashboard table {
+  border-collapse : collapse;
+  text-align : center;
+}
+
+#metronome {
+  border-style : none;
+}
+
+#metronome td {
+  border           : 7px solid white;
+  background-color : lightGrey;
+  height           : 15px;
+  width            : 30px;
+}
+
+#metronome td.highlite {
+  background-color : lightGreen;
+}
+#play {
+  margin-left : 5px;
+  margin-top  : 5px;
+  height      : 30px;
+  width       : 35px;
+  text-align  : center;
+}
