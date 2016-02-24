@@ -2,24 +2,48 @@ initModule = function (  ) {
 
 /* state variables */
   var playing = false;
-  var num_measures = 16;
+  var num_beats = 16;
+  var beat = 0;
+  var timer;
 
 /* event handlers */  
+
+  onTick = function(e) {
+    beat = (beat+1)%num_beats;
+    $("#metronome td").removeClass("highlite");
+    $("#metronome td#m"+beat).addClass("highlite");
+    return false;
+  }
+  
+  onStop = function () {
+    clearTimeout(timer);
+    beat = 0;
+    $("#metronome td").removeClass("highlite");
+    $("#metronome td#m"+beat).addClass("highlite");
+    return false;
+  }
+
   onClick = function(e) {
     var txt;
     playing = ! playing;
-    txt = playing ? "&#9724;" : "&#9654;";
-    $(this).val($("<div>").html(txt).text()); // a trick to have val() work with unicode
+    if (playing) {
+      txt = "&#9724;";
+      timer = setInterval(onTick, 500);
+    } else {
+      txt = "&#9654;";
+      onStop();
+    }
+    $(this).val($("<div>").html(txt).text());
     return false;
   } 
-
+/* end event handlers */  
 
 /* setup */  
   setup = function() {
     
     // html structures
     html = '<tr>';
-    for (var i = 0; i < num_measures; i++) {
+    for (var i = 0; i < num_beats; i++) {
       html += '<td id="m'+ i +'"></td>';
     } 
     html += '</tr>';
