@@ -12,6 +12,22 @@ initModule = function (  ) {
     return false;
   } 
 
-  $( "#play" ).click( onClick );
-  
+
+/* setup */  
+  setup = function() {
+   
+    // button
+    $("#play").val($("<div>").html("&#9654;").text());
+    
+    // metronome
+    $("#m0").addClass("highlite"); 
+    
+    // events
+    $( "#play" ).click( onClick );
+    
+    return false;
+  }
+
+  setup();
+
 };
