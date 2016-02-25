@@ -5,6 +5,7 @@ initModule = function (  ) {
   var num_beats = 16;
   var beat = 0;
   var timer;
+  var hit = new Audio('audio/hit.mp3');
 
 /* event handlers */  
 
@@ -12,6 +13,7 @@ initModule = function (  ) {
     beat = (beat+1)%num_beats;
     $("#metronome td").removeClass("highlite");
     $("#metronome td#m"+beat).addClass("highlite");
+    hit.play();
     return false;
   }
   
