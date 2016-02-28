@@ -10,10 +10,10 @@ initModule = function (  ) {
 /* event handlers */  
 
   onTick = function(e) {
-    beat = (beat+1)%num_beats;
     $("#metronome td").removeClass("highlite");
     $("#metronome td#m"+beat).addClass("highlite");
     hit.play();
+    beat = (beat+1)%num_beats;
     return false;
   }
   
@@ -55,14 +55,13 @@ initModule = function (  ) {
     // highlighting   
     // button
     $("#play").val($("<div>").html("&#9654;").text());
-    
-    // metronome
-    $("#m0").addClass("highlite"); 
     // end highlighting
     
     // events
     $( "#play" ).click( onClick );
     
+    // start
+    $( "#play" ).click();
     return false;
   }
 
