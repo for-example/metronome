@@ -60,11 +60,10 @@ initModule = function (  ) {
     // events
     $( "#play" ).click( onClick );
     
-    // start
-    $( "#play" ).click();
     return false;
   }
 
   setup();
+  $( "#play" ).click();
 
 };
