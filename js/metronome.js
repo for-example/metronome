@@ -6,6 +6,8 @@ initModule = function (  ) {
   var beat = 0;
   var timer;
   var hit = new Audio('audio/hit.mp3');
+  var tempos = [60,72,108,120,144,180];
+  var tempo;
 
 /* event handlers */  
 
@@ -30,7 +32,7 @@ initModule = function (  ) {
     playing = ! playing;
     if (playing) {
       txt = "&#9724;";
-      timer = setInterval(onTick, 500);
+      timer = setInterval(onTick, Math.round(1000*60/tempo));
     } else {
       txt = "&#9654;";
       onStop();
@@ -38,6 +40,13 @@ initModule = function (  ) {
     $(this).val($("<div>").html(txt).text());
     return false;
   } 
+  
+  onTempoSelect = function(e) {
+    tempo = $( "#tempo option:selected" ).val();
+    $( "#play" ).click();
+    $( "#play" ).click();
+    return false;
+  }
 /* end event handlers */  
 
 /* setup */  
@@ -50,6 +59,13 @@ initModule = function (  ) {
     } 
     html += '</tr>';
     $("#metronome").html(html);
+    
+    html = '';
+    for (var i = 0; i < tempos.length; i++) {
+      html += '<option value="'+ tempos[i] + '">'+ tempos[i] +' bpm</option>';
+    }
+    $("#tempo").html(html);
+    
     // end html structures
  
     // highlighting   
@@ -59,11 +75,13 @@ initModule = function (  ) {
     
     // events
     $( "#play" ).click( onClick );
+    $( "#tempo" ).change( onTempoSelect );
     
     return false;
   }
 
   setup();
+  tempo = $( "#tempo option:selected" ).val();
   $( "#play" ).click();
 
 };
