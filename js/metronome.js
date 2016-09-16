@@ -5,7 +5,12 @@ initModule = function (  ) {
   var num_beats = 16;
   var beat = 0;
   var timer;
-  var hit = new Audio('audio/hit.mp3');
+  var hit = Array(num_beats);
+  
+  for (var i = 0; i < num_beats; i++) {
+    hit[i] = new Audio('audio/hit.mp3');
+  }
+  
   var tempos = [60,72,108,120,144,180];
   var tempo;
 
@@ -14,7 +19,7 @@ initModule = function (  ) {
   onTick = function(e) {
     $("#metronome td").removeClass("highlite");
     $("#metronome td#m"+beat).addClass("highlite");
-    hit.play();
+    hit[beat].play();
     beat = (beat+1)%num_beats;
     return false;
   }
